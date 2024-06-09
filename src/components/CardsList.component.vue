@@ -2,7 +2,7 @@
     <div class="cardlist-section">
         <div class="cardlist-section__article">
             <h1 class="article__title">Rick and Morty</h1>
-            <CardFilterComponent 
+            <CardFilterComponent class="cardFilterComponent"
             v-model:modelValue="modelValue"
             v-model:modelStatus="modelStatus"
             :options="heroesName"
@@ -44,18 +44,15 @@ onMounted(async () => {
   try {
     const data = await getInfoAboutHeroes('https://rickandmortyapi.com/api/character/?page=1');
     info.value = data.info;
-    console.log(info.value);
     heroes.value = data.results;
     filteredHeroes.value = data.results;
     heroesName.value = data.results.map((hero) => hero.name);
-    console.log("Heroes names:", heroesName.value);
   } catch (error) {
     console.error("Error fetching hero data:", error);
   }
 });
 
 const filterHeroesByName = () => {
-  console.log(modelValue.value, modelStatus.value);
   if (modelStatus.value === "" && modelValue.value === "") {
     heroes.value = filteredHeroes.value;
   } else if (modelValue.value !== "" && modelStatus.value === "") {
@@ -79,6 +76,7 @@ const changePage = async (pageUrl) => {
     const data = await getInfoAboutHeroes(page.value);
     heroes.value = data.results;
     filteredHeroes.value = data.results;
+    heroesName.value = data.results.map((hero) => hero.name);
     info.value = data.info;
   } catch (error) {
     console.error("Error fetching hero data:", error);

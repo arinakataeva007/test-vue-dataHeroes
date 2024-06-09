@@ -1,7 +1,7 @@
 <template>
-    <div>
-        <button @click="prevPage" :disabled="info.prev === null">Prev</button>
-        <button @click="nextPage" :disabled="info.next === null">Next</button>
+    <div class="pagesBtn">
+        <button class="prev btn" @click="prevPage" :disabled="info.prev === null"><</button>
+        <button class="next btn" @click="nextPage" :disabled="info.next === null">></button>
     </div>
 </template>
 
@@ -22,3 +22,22 @@ export default{
     },
 }
 </script>
+
+<style scoped>
+.pagesBtn{
+    display: flex;
+    margin-left: 394px;
+    justify-content: space-between;
+    width: 300px;
+    margin-top: 20px;
+}
+.btn{
+    box-sizing: border-box;
+    border: none;
+    border-radius: 10px;
+    width: 145px;
+    padding: 5px;
+    background: rgb(196, 196, 196);
+    font-size: 20px;
+}
+</style>
